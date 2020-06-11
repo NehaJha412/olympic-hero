@@ -135,11 +135,11 @@ plt.ylabel('Total Medals')
 
 # --------------
 #Code starts here
-
+#finding ratio
 summer_df['Golden_Ratio']=summer_df['Gold_Summer'] /summer_df['Total_Summer']
-
+#finding maximum 
 summer_max_ratio=max(summer_df['Golden_Ratio'])
-
+#fing country asscociated with maximum ratio
 summer_country_gold=summer_df.loc[summer_df['Golden_Ratio'].idxmax(),'Country_Name']
 
 
@@ -160,24 +160,27 @@ print(summer_country_gold,winter_country_gold,top_country_gold)
 
 # --------------
 #Code starts here
-
+#dropping last row
 data_1=data[:-1]
+#calculating weighted value
 data_1['Total_Points']=3*data['Gold_Total']+2*data['Silver_Total']+data['Bronze_Total']
 
+#finding maximum
 most_points=max(data_1['Total_Points'])
+#findinf best country associated with maximum points
 best_country=data_1.loc[data_1['Total_Points'].idxmax(),'Country_Name']
 print(best_country)
 
 
 # --------------
 #Code starts here
-
+#new conditional variable
 best=data[data['Country_Name']==best_country]
+#subsetting
 best=best[['Gold_Total','Silver_Total','Bronze_Total']]
 
-
+#bar plot
 best.plot.bar(stacked=True)
-#best.groupby['Gold_Total','Silver_Total','Bronze_Total'].size().unstack().plot(kind="bar",#stacked=True,figsize=(15,100))
 plt.xlabel("United States")
 
 plt.ylabel("Medals Tally")
